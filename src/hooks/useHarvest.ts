@@ -4,6 +4,7 @@ import useHandleTransactionReceipt from './useHandleTransactionReceipt';
 import {Bank} from '../bomb-finance';
 
 const useHarvest = (bank: Bank) => {
+  {console.log({bank})}
   const bombFinance = useBombFinance();
   const handleTransactionReceipt = useHandleTransactionReceipt();
 

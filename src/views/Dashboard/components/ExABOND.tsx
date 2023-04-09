@@ -12,7 +12,7 @@ import TokenSymbol from '../../../components/TokenSymbol';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import useModal from '../../../hooks/useModal';
-import ExchangeModal from './ExchangeModal';
+import ExchangeModal from '../../Bond/components/ExchangeModal';
 import ERC20 from '../../../bomb-finance/ERC20';
 import useTokenBalance from '../../../hooks/useTokenBalance';
 import useApprove, { ApprovalState } from '../../../hooks/useApprove';
@@ -65,56 +65,7 @@ const ExchangeCard: React.FC<ExchangeCardProps> = ({
     />,
   );
   return (
-    <Card>
-      <CardContent>
-        <StyledCardContentInner>
-          <StyledCardTitle>{`${action} ${toTokenName}`}</StyledCardTitle>
-          <StyledExchanger>
-            <StyledToken>
-              <StyledCardIcon>
-                <TokenSymbol symbol={fromToken.symbol} size={54} />
-              </StyledCardIcon>
-              <Label text={fromTokenName} variant="yellow" />
-            </StyledToken>
-            <StyledExchangeArrow>
-              <FontAwesomeIcon icon={faArrowRight} />
-            </StyledExchangeArrow>
-            <StyledToken>
-              <StyledCardIcon>
-                <TokenSymbol symbol={toToken.symbol} size={54} />
-              </StyledCardIcon>
-              <Label text={toTokenName} variant="yellow" />
-            </StyledToken>
-          </StyledExchanger>
-          <StyledDesc>{priceDesc}</StyledDesc>
-          <StyledCardActions>
-            {!!account ? (
-              <>
-                {approveStatus !== ApprovalState.APPROVED && !disabled ? (
-                  <Button
-                    className="shinyButton"
-                    disabled={approveStatus === ApprovalState.PENDING || approveStatus === ApprovalState.UNKNOWN}
-                    onClick={() => catchError(approve(), `Unable to approve ${fromTokenName}`)}
-                  >
-                    {`Approve ${fromTokenName}`}
-                  </Button>
-                ) : (
-                  <Button
-                    className={disabled ? 'shinyButtonDisabled' : 'shinyButton'}
-                    onClick={onPresent}
-                    disabled={disabled}
-                  >
-                    {disabledDescription || action}
-                  </Button>
-                )}
-              </>
-            ) : (
-              <UnlockWallet />
-            )}
-          </StyledCardActions>
-        </StyledCardContentInner>
-      </CardContent>
-    </Card>
+    <>{priceDesc}</>
   );
 };
 

@@ -39,6 +39,7 @@ const FarmCard = ({ bank }) => {
             </Box>
             <Typography variant="h5" component="h2">
               {bank.depositTokenName}
+              
             </Typography>
             <Typography color="textSecondary">
               {/* {bank.name} */}

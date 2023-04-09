@@ -7,16 +7,16 @@ import {makeStyles} from '@material-ui/core/styles';
 
 import {Box, Button, Card, CardContent, Typography, Grid} from '@material-ui/core';
 
-import PageHeader from '../../components/PageHeader';
-import Spacer from '../../components/Spacer';
-import UnlockWallet from '../../components/UnlockWallet';
-import Harvest from './components/Harvest';
-import Stake from './components/Stake';
-import useBank from '../../hooks/useBank';
-import useStatsForPool from '../../hooks/useStatsForPool';
-import useRedeem from '../../hooks/useRedeem';
-import {Bank as BankEntity} from '../../bomb-finance';
-import useBombFinance from '../../hooks/useBombFinance';
+import PageHeader from '../../../components/PageHeader';
+import Spacer from '../../../components/Spacer';
+import UnlockWallet from '../../../components/UnlockWallet';
+import Harvest from '../components/Harvest';
+import Stake from '../components/Stake';
+import useBank from '../../../hooks/useBank';
+import useStatsForPool from '../../../hooks/useStatsForPool';
+import useRedeem from '../../../hooks/useRedeem';
+import {Bank as BankEntity} from '../../../bomb-finance';
+import useBombFinance from '../../../hooks/useBombFinance';
 import {Alert} from '@material-ui/lab';
 //import { bankDefinitions } from '../../config';
 
@@ -33,7 +33,7 @@ const Bank: React.FC = () => {
   useEffect(() => window.scrollTo(0, 0));
   const classes = useStyles();
   const {bankId} = useParams();
-  {console.log(bankId+78)}
+  //console.log(bankId+56);
   const bank = useBank(bankId);
 
   const {account} = useWallet();
@@ -110,7 +110,6 @@ const Bank: React.FC = () => {
           </Grid>
         </Grid>
       </Box>
-   
       <Box mt={5}>
         <StyledBank>
           <StyledCardsWrapper>

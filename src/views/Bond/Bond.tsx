@@ -47,6 +47,7 @@ const Bond: React.FC = () => {
 
   const handleBuyBonds = useCallback(
     async (amount: string) => {
+      console.log(amount);
       const tx = await bombFinance.buyBonds(amount);
       addTransaction(tx, {
         summary: `Buy ${Number(amount).toFixed(2)} BBOND with ${amount} BOMB`,

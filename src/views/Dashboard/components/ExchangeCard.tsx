@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-
+import '../index.css'
 import { Button, Card } from '@material-ui/core';
 
 // import Button from '../../../components/Button';
@@ -12,7 +12,7 @@ import TokenSymbol from '../../../components/TokenSymbol';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import useModal from '../../../hooks/useModal';
-import ExchangeModal from './ExchangeModal';
+import ExchangeModal from '../../Bond/components/ExchangeModal';
 import ERC20 from '../../../bomb-finance/ERC20';
 import useTokenBalance from '../../../hooks/useTokenBalance';
 import useApprove, { ApprovalState } from '../../../hooks/useApprove';
@@ -65,56 +65,34 @@ const ExchangeCard: React.FC<ExchangeCardProps> = ({
     />,
   );
   return (
-    <Card>
-      <CardContent>
-        <StyledCardContentInner>
-          <StyledCardTitle>{`${action} ${toTokenName}`}</StyledCardTitle>
-          <StyledExchanger>
-            <StyledToken>
-              <StyledCardIcon>
-                <TokenSymbol symbol={fromToken.symbol} size={54} />
-              </StyledCardIcon>
-              <Label text={fromTokenName} variant="yellow" />
-            </StyledToken>
-            <StyledExchangeArrow>
-              <FontAwesomeIcon icon={faArrowRight} />
-            </StyledExchangeArrow>
-            <StyledToken>
-              <StyledCardIcon>
-                <TokenSymbol symbol={toToken.symbol} size={54} />
-              </StyledCardIcon>
-              <Label text={toTokenName} variant="yellow" />
-            </StyledToken>
-          </StyledExchanger>
-          <StyledDesc>{priceDesc}</StyledDesc>
-          <StyledCardActions>
+          <>
             {!!account ? (
               <>
-                {approveStatus !== ApprovalState.APPROVED && !disabled ? (
-                  <Button
-                    className="shinyButton"
-                    disabled={approveStatus === ApprovalState.PENDING || approveStatus === ApprovalState.UNKNOWN}
-                    onClick={() => catchError(approve(), `Unable to approve ${fromTokenName}`)}
-                  >
-                    {`Approve ${fromTokenName}`}
-                  </Button>
-                ) : (
-                  <Button
-                    className={disabled ? 'shinyButtonDisabled' : 'shinyButton'}
-                    onClick={onPresent}
-                    disabled={disabled}
-                  >
-                    {disabledDescription || action}
-                  </Button>
-                )}
+              {approveStatus !== ApprovalState.APPROVED && !disabled ? (
+                <button
+                  className="titem"
+                  disabled={approveStatus === ApprovalState.PENDING || approveStatus === ApprovalState.UNKNOWN}
+                  onClick={() => catchError(approve(), `Unable to approve ${fromTokenName}`)}
+                >
+                  Purchase<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-cart" viewBox="0 0 16 16">
+                    <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                  </svg>
+                </button>
+              ) : (
+                <button
+                  className={disabled ? 'titem' : 'titem'}
+                  onClick={onPresent}
+                  disabled={disabled}
+                >
+                  {disabledDescription || action}
+                </button>
+              )}
               </>
             ) : (
               <UnlockWallet />
             )}
-          </StyledCardActions>
-        </StyledCardContentInner>
-      </CardContent>
-    </Card>
+          </>
+
   );
 };
 
@@ -128,7 +106,11 @@ const StyledCardTitle = styled.div`
   color: #f9d749;
   margin-top: ${(props) => -props.theme.spacing[3]}px;
 `;
+const Fon=styled.div`
+  color:#fff;
+  font-family:'Roboto';
 
+`;
 const StyledCardIcon = styled.div`
   background-color: ${(props) => props.theme.color.grey[900]};
   width: 72px;
@@ -169,7 +151,13 @@ const StyledCardActions = styled.div`
 
 const StyledDesc = styled.span``;
 
-
+const StyledCardContentInner = styled.div`
+  align-items: center;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-between;
+`;
 const Titr = styled.div`
 
     background-color: #ffffff00;
@@ -193,14 +181,4 @@ const Titr = styled.div`
 
 
 `;
-
-
-const StyledCardContentInner = styled.div`
-  align-items: center;
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  justify-content: space-between;
-`;
-
 export default ExchangeCard;

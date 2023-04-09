@@ -5,7 +5,7 @@ export type Configuration = {
   chainId: ChainId;
   networkName: string;
   ftmscanUrl: string;
-  defaultProvider: string;
+  defaultProvider: 'dev';
   deployments: Deployments;
   externalTokens: {[contractName: string]: [string, number]};
   config?: EthereumConfig;
